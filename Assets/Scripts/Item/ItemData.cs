@@ -5,24 +5,15 @@ using System;
 
 namespace TheDungeon.Item
     {
-    public enum ItemType//아이템 타입 종류 정의
-    {
-        Key,
-        Equip,
-        Rock,
-        food
-    }
-
-    public enum ConsumableType//소비템 타입 종류 정리
-    {
-        Health,
-        stamina
-    }
-
     [Serializable]
+
+    public enum ItemType
+    {
+        Apple,
+        NoApple
+    }
     public class ItemDataConsumable
     {
-        public ConsumableType type;
         public float value;
     }
 
@@ -34,15 +25,7 @@ namespace TheDungeon.Item
         public string displayName;
         public string description;
         public ItemType type;
-        public Sprite icon;
         public GameObject dropPrefab;
-
-        [Header("Stacking")]
-        public bool canStack;
-        public int maxStackAmount;
-
-        [Header("Consumable")]
-        public ItemDataConsumable[] consumables;
-
+                
     }
 }

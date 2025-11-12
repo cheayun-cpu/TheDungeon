@@ -101,11 +101,16 @@ void Awake()
         }
 
     }
-    
+    public void CloseGameOverUI()
+    {
+        GameOverUI.SetActive(false);
+    }
+
+
     public void CantGetItem()
     {
         CantGetUI.SetActive(true);
-        HideAfterSeconds(CantGetUI, 2);
+        StartCoroutine(HideAfterSeconds(CantGetUI, 2f));
     }
 }
 

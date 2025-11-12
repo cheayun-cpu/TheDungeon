@@ -12,7 +12,7 @@ public class PlayerCondition : MonoBehaviour
     {
         playerHp -= damage;
         UIManager.uiManager.ChangeHealthUI(playerHp);
-        Debug.Log($"{damage}를 입었습니다. 현재 체력:{playerHp}");
+        UIManager.uiManager.ShowBloodScreen();
         CheckDie();
     }
 
@@ -21,7 +21,7 @@ public class PlayerCondition : MonoBehaviour
         if(playerHp<=0)
         {
             playerHp = 0;
-            GameManager.Instance.isDie=true;
+            GameManager.Instance.GameOver();
         }
     }
 

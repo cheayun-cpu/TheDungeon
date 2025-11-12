@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7b1ca7a9a668f46a6126fc4188480c, type: 3}
+  m_Name: Item_GreenApple
+  m_EditorClassIdentifier: 
+  displayName: GreenApple
+  description: "\uBA39\uC73C\uBA74 \uD798\uC774 \uC138\uC9C8 \uAC83 \uAC19\uAE30\uB3C4
+    \uD558\uACE0?"
+  type: 0
+  dropPrefab: {fileID: 7761426194498352610, guid: efc0ef4175e68ba49831c2e4774d1bb1, type: 3}

@@ -7,7 +7,7 @@
             "id": "c324e9b8-a7ec-4539-b762-50e04e260209",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Eat",
                     "type": "Button",
                     "id": "8b489c7b-1185-43c3-8300-dbc46d3480e3",
                     "expectedControlType": "",
@@ -160,32 +160,15 @@
                     "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "b6875cff-fbb1-4039-bdca-fce78242c7a8",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "c3c4a504-5ee9-48e8-aba6-e3fd7a6fdde2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "cac1ace6-295b-49dd-8e76-ed84b480e0cd",
-                    "path": "",
+                    "id": "0ac5484f-e9a5-41c6-9939-2189e0a5e9e1",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Eat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

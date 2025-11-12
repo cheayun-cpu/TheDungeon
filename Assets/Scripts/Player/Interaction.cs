@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TheDungeon.Item;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,7 +22,7 @@ public class Interaction : MonoBehaviour//상호작용 스크립트
 
     public TextMeshProUGUI UIText;
     private Camera camera;
-    
+    private int throwPower=15;
 
     private void Start()
     {
@@ -70,7 +71,7 @@ public class Interaction : MonoBehaviour//상호작용 스크립트
             {
                 curHoldObject = curSeeGameObject;//현재 잡은 오브젝트 저장
                 curHoldObjectData = curHoldObject.GetComponent<ItemObject>();//현재 잡은 오브젝트의 데이터 저장
-                HoldObjectPositionReset(curHoldObject);//카메라에 오브젝트 뜨게 만들기
+                HoldObjectPositionReset();//카메라에 오브젝트 뜨게 만들기
 
                 curInteractable.Oninteract();//??
 
@@ -93,30 +94,86 @@ public class Interaction : MonoBehaviour//상호작용 스크립트
     }
 
 
-    public void OnInteractUse(InputAction.CallbackContext context)//아이템 사용하기
-    {
+    
 
-    }
-
-    public void HoldObjectPositionReset(GameObject O)//주운 오브젝트 표시 및 위치 조정하기
+    public void HoldObjectPositionReset()//주운 오브젝트 표시 및 위치 조정하기
     {
+        Rigidbody rb = curHoldObject.GetComponent<Rigidbody>();
+        Collider collider = curHoldObject.GetComponent<Collider>();
+        rb.isKinematic = true;
+        collider.isTrigger = true;
+
         Transform camTransform = Camera.main.transform;
-        O.transform.SetParent(camTransform);
-       
+        curHoldObject.transform.SetParent(camTransform);
+        
         if (curHoldObjectData.data.displayName == "Key")
         {
-            O.transform.localPosition = new Vector3(0.3f, -0.2f, 0.6f);
-            O.transform.localRotation = Quaternion.Euler(20.694f,0f,0f);//각도 넣어주는 함수
+            curHoldObject.transform.localPosition = new Vector3(4.52f, -2.11f, 4.22f);
+            curHoldObject.transform.localRotation = Quaternion.Euler(4.757f, -12.415f, 14.23f);//각도 넣어주는 함수
         }
-        else if (curHoldObjectData.data.displayName == "Apple")
+        else if (curHoldObjectData.data.type == ItemType.Apple)
         {
-            O.transform.localPosition = new Vector3(0.409f, -0.186f, 0.408f);
-            O.transform.localRotation = Quaternion.identity;//회전값==(0,0,0);
+            curHoldObject.transform.localPosition = new Vector3(4.14f, -2.2f, 3.88f);
+            curHoldObject.transform.localRotation = Quaternion.identity;//회전값==(0,0,0);
         }
         else if (curHoldObjectData.data.displayName == "Rock")
         {
-            O.transform.localPosition = new Vector3(1f, -0.8f, 1f);
-            O.transform.localRotation = Quaternion.identity;
+            curHoldObject.transform.localPosition = new Vector3(1f, -0.8f, 1f);
+            curHoldObject.transform.localRotation = Quaternion.identity;
         }
     }
+
+    public void OnInteractThrow(InputAction.CallbackContext context)//아이템 던지기
+    {
+        if (context.phase == InputActionPhase.Started && curHoldObject != null)//들고있는 오브젝트를 던지기 키를 입력할 때
+        {
+            Rigidbody rb = curHoldObject.GetComponent<Rigidbody>();
+            Collider collider = curHoldObject.GetComponent<Collider>();
+            rb.isKinematic = false;
+            collider.isTrigger = false;
+
+            curHoldObject.transform.SetParent(null);//상위하위 연결 끊기
+            
+            rb.AddForce(transform.forward * throwPower, ForceMode.Impulse);
+
+            curHoldObject=null;
+
+        }
+    }
+
+    public void OnInteractEat(InputAction.CallbackContext context)//아이템 먹기
+    {
+        if (context.phase == InputActionPhase.Started && curHoldObject != null)
+        {
+            curHoldObject.SetActive(false);
+
+            if (curHoldObjectData.data.displayName== "GreenApple")
+            {
+                StartCoroutine(PowerUp());
+                Debug.Log("파워업실행");
+            }
+
+            else if(curHoldObjectData.data.displayName == "Apple")
+            {
+                //아드레날린 지속시간 증가
+            }
+            curHoldObject = null;
+        }
+    }
+
+    IEnumerator PowerUp()
+    {
+        throwPower = 100;
+        Debug.Log("파워100");
+        yield return new WaitForSeconds(10f);
+        throwPower = 15;
+        Debug.Log("돌아옴");
+    }
+
+
+
+
+
+
+
 }

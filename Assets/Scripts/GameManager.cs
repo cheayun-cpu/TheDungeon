@@ -7,14 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public bool isDie=false;
+   
+
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         { 
@@ -23,16 +24,11 @@ public class GameManager : MonoBehaviour
 }
     private void Start()
     {
-        CursorModeInPopup();
+        CursorModeInGame();//디버깅용으로 활성화
+        //CursorModeInPopup();
     }
 
-    private void Update()
-    {
-        if (isDie)
-        {
-            GameOver();
-        }
-    }
+   
     private void CursorModeInGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -50,7 +46,6 @@ public class GameManager : MonoBehaviour
     public void OnClickStart()
     {
         Debug.Log("게임 시작!");
-        isDie = false;
         SceneManager.LoadScene("MainScene");
         CursorModeInGame();
 
@@ -69,8 +64,9 @@ public class GameManager : MonoBehaviour
     public void OnClickRetry()
     {
         Debug.Log("게임 재시작!");
-        isDie = false;
+        
         SceneManager.LoadScene("MainScene");
+        UIManager.uiManager.CloseGameOverUI();
         CursorModeInGame();
         
     }
@@ -78,12 +74,11 @@ public class GameManager : MonoBehaviour
     public void OnClickHome()
     {
         Debug.Log("시작화면 돌아가기");
-        isDie = false;
         SceneManager.LoadScene("StartScene");
         CursorModeInPopup();
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         UIManager.uiManager.ShowGameOverUI();
         CursorModeInPopup();
