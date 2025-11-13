@@ -28,7 +28,7 @@ public class PlayerCondition : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ObstacleObject obstacle = other.GetComponentInParent<ObstacleObject>();
-        if (other.CompareTag("Arrow")|| other.CompareTag("Ax"))
+        if (other.CompareTag("Obstacle"))
         {
             Debug.Log($"장애물에 충돌했습니다");
             damage = obstacle.data.damage;

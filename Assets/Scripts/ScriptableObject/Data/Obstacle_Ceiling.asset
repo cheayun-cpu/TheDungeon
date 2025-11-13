@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ceiling
   damage: 3
-  dropPrefab: {fileID: 0}
+  dropPrefab: {fileID: 1384764403829887025, guid: 45f6fd4369d24a749ac92ad8ad9cd65b, type: 3}

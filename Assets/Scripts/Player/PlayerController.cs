@@ -2,11 +2,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed=5;
+    private float moveSpeed=10;
     private Vector2 inputMove;
     private float jumpPower=80;
     public LayerMask groundLayerMask;
@@ -21,11 +22,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
 
     private Rigidbody rb;
+    public bool isEatApple=false;
 
-   
+
+
     private void Awake()
     {
         rb=GetComponent<Rigidbody>();
+        CharacterManager.Instance.PlayerController = this;
     }
 
     private void Start()
@@ -131,41 +135,66 @@ public class PlayerController : MonoBehaviour
 
     private void AdrenalineMode()
     {
-        moveSpeed = 10;
-        jumpPower = 100;
+        moveSpeed = 40;
+        jumpPower = 200;
     }
 
+    public IEnumerator AdrenalineStart()
+    {
+        AdrenalineMode();
 
+        if (isEatApple)
+        {
+            yield return new WaitForSeconds(10f);
+            UIManager.uiManager.ShowAdrenalineTimer_EatApple();
+        }
+        else
+        {
+            yield return new WaitForSeconds(5f);
+            UIManager.uiManager.ShowAdrenalineTimer();
+           
+        }
+        moveSpeed = 10;
+        jumpPower = 80;
+        Debug.Log("È¿°ú ³¡!");
+    }
+
+    
+    IEnumerator DlayFourSeconds()
+    {
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(AdrenalineStart());
+    }
+
+    private void RunAdrenalineCorutine()
+    {
+        StartCoroutine(DlayFourSeconds());
+    }
+    
+
+    private void OnEnable()
+    {
+        Interaction.afterGetKey += RunAdrenalineCorutine;
+    }
+
+    private void OnDisable()
+    {
+        Interaction.afterGetKey -= RunAdrenalineCorutine;
+    }
 
 
 
     private void OnCollisionStay(Collision other)
     {
-        if (IsGrounded()&& other.gameObject.CompareTag("SuperJump"))
+        if (IsGrounded() && other.gameObject.CompareTag("SuperJumpFake"))
         {
-            jumpPower = 200;
-        }
-
-        else if (IsGrounded() && other.gameObject.CompareTag("SuperJumpFake"))
-        {
-            rb.AddForce(Vector3.up * 100, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 800, ForceMode.Impulse);
         }
         else if(other.gameObject.CompareTag("Arrow"))
         {
             UIManager.uiManager.ShowBloodScreen();
 
         }
-
-
-
     }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("SuperJump"))
-        {
-            jumpPower = 80;
-        }
-    }
-
 }

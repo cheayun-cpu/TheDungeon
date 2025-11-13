@@ -20,8 +20,11 @@ public class CharacterManager : MonoBehaviour//현재 플레이어를 전역적으로 저장하
     public Player Player 
     {get; set;}
 
-    
-    
+    public PlayerController PlayerController
+    { get; set; }
+
+
+
     private void Awake()
     {
         if (instance == null)

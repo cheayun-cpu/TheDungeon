@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ public class Interaction : MonoBehaviour//상호작용 스크립트
     public TextMeshProUGUI UIText;
     private Camera camera;
     private int throwPower=15;
+
+    public static Action afterGetKey;
 
     private void Start()
     {
@@ -77,8 +80,9 @@ public class Interaction : MonoBehaviour//상호작용 스크립트
 
                 if (curHoldObjectData.data.displayName == "Key")//위치조정하기
                 {
-                    //델리게이트 실행해
-                    //(+=아드레날린 +=카메라 움직임 +=바닥무너짐 +=시간차UI) 
+                    afterGetKey?.Invoke();
+                    
+                    //( +=카메라 움직임 +=바닥무너짐 +=시간차UI) 
                 }
 
 
@@ -155,7 +159,7 @@ public class Interaction : MonoBehaviour//상호작용 스크립트
 
             else if(curHoldObjectData.data.displayName == "Apple")
             {
-                //아드레날린 지속시간 증가
+                CharacterManager.Instance.PlayerController.isEatApple=true;
             }
             curHoldObject = null;
         }
