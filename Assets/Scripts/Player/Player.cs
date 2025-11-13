@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TheDungeon.Item;
 
 public class Player : MonoBehaviour
 {
@@ -10,8 +6,7 @@ public class Player : MonoBehaviour
 
     public GameObject curHoldObject;
     public ItemObject curHoldObjectData;
-       public GameObject holdItem;
-
+    public GameObject holdItem;
 
     private void Awake()
     {

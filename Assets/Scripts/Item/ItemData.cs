@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 namespace TheDungeon.Item
-    {
+{
     [Serializable]
-
     public enum ItemType
     {
         Apple,
@@ -16,8 +13,7 @@ namespace TheDungeon.Item
     {
         public float value;
     }
-
-    [CreateAssetMenu(fileName = "Item", menuName = "New Item")]//밑에 입력할 수 있는 창을 만들어줌
+    [CreateAssetMenu(fileName = "Item", menuName = "New Item")]
 
     public class ItemData : ScriptableObject
     {
@@ -26,6 +22,5 @@ namespace TheDungeon.Item
         public string description;
         public ItemType type;
         public GameObject dropPrefab;
-                
     }
 }

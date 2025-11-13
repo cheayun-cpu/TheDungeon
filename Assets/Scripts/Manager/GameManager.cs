@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-   
-
 
     private void Awake()
     {
@@ -24,10 +19,8 @@ public class GameManager : MonoBehaviour
 }
     private void Start()
     {
-        CursorModeInGame();//디버깅용으로 활성화
-        //CursorModeInPopup();
+        CursorModeInPopup();
     }
-
    
     private void CursorModeInGame()
     {
@@ -48,8 +41,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("게임 시작!");
         SceneManager.LoadScene("MainScene");
         CursorModeInGame();
-
-
     }
 
     public void OnClickExit()
@@ -83,9 +74,6 @@ public class GameManager : MonoBehaviour
         UIManager.uiManager.ShowGameOverUI();
         CursorModeInPopup();
     }
-
-    
-
 }
 
    

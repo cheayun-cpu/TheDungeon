@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "Obstacle", menuName = "New Obstacle")]//밑에 입력할 수 있는 창을 만들어줌
+[CreateAssetMenu(fileName = "Obstacle", menuName = "New Obstacle")]
 
 public class ObstacleData : ScriptableObject
 {

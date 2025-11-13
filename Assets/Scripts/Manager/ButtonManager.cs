@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +8,8 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private Button retryButton;
     [SerializeField] private Button homeButton;
     [SerializeField] private Button exitButton;
-
     private void Start()
     {
-        
-
         if (startButton != null)
             startButton.onClick.AddListener(GameManager.Instance.OnClickStart);
 
@@ -26,6 +21,5 @@ public class ButtonManager : MonoBehaviour
 
         if (exitButton != null)
             exitButton.onClick.AddListener(GameManager.Instance.OnClickExit);
-
     }
 }

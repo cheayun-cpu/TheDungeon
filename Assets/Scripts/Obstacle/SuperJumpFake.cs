@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class SuperJumpFake : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //아이템과의 충돌 시 플레이어와 똑같은 물리법칙 받는 구현 예정
 }

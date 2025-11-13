@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerCondition : MonoBehaviour
 {
     public int playerHp = 3;
-    
     int damage;
 
     public void TakeDamage()
@@ -35,5 +31,4 @@ public class PlayerCondition : MonoBehaviour
             TakeDamage();
         }
     }
-
 }

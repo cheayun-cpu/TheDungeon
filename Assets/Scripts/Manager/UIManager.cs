@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UIManager;
-
 
 public class UIManager : MonoBehaviour
 {
@@ -23,33 +19,21 @@ public class UIManager : MonoBehaviour
     public GameObject AfterGetKeyUI3;
     public GameObject AfterGetKeyUI4;
 
-
-
     [SerializeField] private TMP_Text descriptionUI;
 
     static public UIManager uiManager;
     
-     
-          
-        
-
-
 void Awake()
 {
         uiManager = this;
 }
-    private void CursorModeInGame()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
 
     public void CursorModeInPopup()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    private IEnumerator HideAfterSeconds(GameObject uiObject, float delay)//ui 시간차 두고 켰다 껐다 할 수 있게 하기
+    private IEnumerator HideAfterSeconds(GameObject uiObject, float delay)
     {
         yield return new WaitForSeconds(delay);
         uiObject.SetActive(false);
@@ -66,7 +50,6 @@ void Awake()
     {
         DescriptionUI.SetActive(true);
         descriptionUI.text = description;
-
     }
 
     public void CloseDescriptionUI()
@@ -76,12 +59,8 @@ void Awake()
 
     public void ShowGameOverUI()//유저의 체력이 0이 됬을 때
     {
-       // Debug.Log("게임오버 UI 표시");
         GameOverUI.SetActive(true);
     }
-
-
-    
 
     public void ShowPointerUI()
     {
@@ -99,19 +78,16 @@ void Awake()
         {
             HealthUI3.SetActive(false);
         }
-
         else if (curHP == 1)
         {
             HealthUI3.SetActive(false);
             HealthUI2.SetActive(false);
         }
-
     }
     public void CloseGameOverUI()
     {
         GameOverUI.SetActive(false);
     }
-
 
     public void CantGetItem()
     {
@@ -133,33 +109,27 @@ void Awake()
     {
         AfterGetKeyUI3.SetActive(true);
     }
-
     public void ShowFinalUI4()
     {
         AfterGetKeyUI4.SetActive(true);
 
     }
-
     public void CloseFinalUI1()
     {
         AfterGetKeyUI1.SetActive(false);
     }
-
     public void CloseFinalUI2()
     {
         AfterGetKeyUI2.SetActive(false);
     }
-
     public void CloseFinalUI3()
     {
         AfterGetKeyUI3.SetActive(false);
     }
-
     public void CloseFinalUI4()
     {
         AfterGetKeyUI4.SetActive(false);
     }
-
     public void CloseFinalUI()
     {
         CloseFinalUI1();
@@ -167,7 +137,6 @@ void Awake()
         CloseFinalUI3();
         CloseFinalUI4();
     }
-
     public void FinalUI()
     {
         ShowFinalUI1();
@@ -186,8 +155,6 @@ void Awake()
     {
         AdrenalineTimer_EatAlpple.SetActive(true);
     }
-
-    
     private void OnEnable()
     {
         Interaction.afterGetKey += FinalUI;
@@ -197,6 +164,5 @@ void Awake()
     {
         Interaction.afterGetKey -= FinalUI;
     }
-
 }
 
